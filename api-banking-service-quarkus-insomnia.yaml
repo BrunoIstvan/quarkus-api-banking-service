@@ -1,0 +1,277 @@
+type: collection.insomnia.rest/5.0
+name: Banking Service Quarkus
+meta:
+  id: wrk_7978fa4cfd514377b14961da15f5e3ce
+  created: 1749904495085
+  modified: 1749904495085
+  description: ""
+collection:
+  - name: Situação Cadastral
+    meta:
+      id: fld_5048ee5e68844c7980ba7baeeee84b67
+      created: 1750071349254
+      modified: 1750071545263
+      sortKey: -1750071349454
+      description: ""
+    children:
+      - url: http://localhost:8181/situacao-cadastral
+        name: Listar Situação Cadastral
+        meta:
+          id: req_cf98bbec3ff644729da3f993d538c047
+          created: 1749904502610
+          modified: 1750071365498
+          isPrivate: false
+          description: ""
+          sortKey: -1750071359235
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8181/situacao-cadastral
+        name: Inserir Situação Cadastral
+        meta:
+          id: req_8d1feb56f3f44c138c377f2f2f266328
+          created: 1750071368258
+          modified: 1750730935113
+          isPrivate: false
+          description: ""
+          sortKey: -1750071368258
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            	{
+            		"nome": "Agencia Vila Santa Clara",
+            		"razaoSocial": "AGENCIA SANTA CLARA SÃO PAULO - SP",
+            		"cnpj": "29461075000151",
+            		"situacaoCadastral": "ATIVO"
+            	}
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Agências
+    meta:
+      id: fld_8c78cfb9d96347b3a7fe56d6af6ed638
+      created: 1750071510268
+      modified: 1750071541445
+      sortKey: -1750071349354
+      description: ""
+    children:
+      - url: http://localhost:8080/agencias
+        name: Cadastrar Agência
+        meta:
+          id: req_22f37021d9f848a8a522321f0def0684
+          created: 1749909615704
+          modified: 1750732322312
+          isPrivate: false
+          description: ""
+          sortKey: -1750071513810
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "Agencia Vila Santa Clara",
+            	"razao_social": "AGENCIA SANTA CLARA SÃO PAULO - SP",
+            	"cnpj": "29461075030151",
+            	"endereco": {
+            		"tipo_endereco": "Avenida",
+            		"logradouro": "Sapopemba",
+            		"complemento": "",
+            		"bairro": "Vila Santa Clara",
+            		"numero": "5005"
+            	}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/agencias/2
+        name: Buscar Agência por Id
+        meta:
+          id: req_bf284ceeb4f04067a3382291057d09c4
+          created: 1749910184037
+          modified: 1750729917467
+          isPrivate: false
+          description: ""
+          sortKey: -1750071513760
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/agencias
+        name: Atualizar Agência
+        meta:
+          id: req_bb35fecb5a7445e181aec98dfe7a0797
+          created: 1750070566530
+          modified: 1750731555915
+          isPrivate: false
+          description: ""
+          sortKey: -1750071513610
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"id": 5,
+            	"nome": "Agencia Valo Velho",
+            	"razao_social": "AGENCIA VALO VELHO SÃO PAULO - SP",
+            	"cnpj": "82627776000109"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/agencias/2/endereco
+        name: Atualizar Endereço de Agência
+        meta:
+          id: req_ce4b2f11417849ddbec9cd9d95f9391f
+          created: 1750071050960
+          modified: 1750730521383
+          isPrivate: false
+          description: ""
+          sortKey: -1750071513710
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"tipo_endereco": "Rua",
+            	"logradouro": "Lotus",
+            	"complemento": "Quadra 1",
+            	"bairro": "Vila Conceição",
+            	"numero": "212"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/agencias
+        name: Listar Agências
+        meta:
+          id: req_3807c64f5f11437690467457b5cd9a50
+          created: 1750072624949
+          modified: 1750730475397
+          isPrivate: false
+          description: ""
+          sortKey: -1750072624949
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/agencias/1
+        name: Excluir Agência por Id
+        meta:
+          id: req_a5e05f4fbb12435685126d0416f16cba
+          created: 1750072744034
+          modified: 1750731637008
+          isPrivate: false
+          description: ""
+          sortKey: -1750071513510
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - url: http://localhost:8080/metrics
+    name: Metrics
+    meta:
+      id: req_ace1e03643514a308c7e7ce13d68b651
+      created: 1750447202932
+      modified: 1750447227054
+      isPrivate: false
+      description: ""
+      sortKey: -1750447202932
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.2.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_be0964cf2d967ca65e575a5ee922c42883cf0027
+    created: 1749904495088
+    modified: 1749904495088
+environments:
+  name: Base Environment
+  meta:
+    id: env_be0964cf2d967ca65e575a5ee922c42883cf0027
+    created: 1749904495087
+    modified: 1749904495087
+    isPrivate: false
