@@ -42,17 +42,17 @@ public class BankBranchService {
         timer.record(() -> {
             var agenciaHttp = registrationStatusHttpService.buscarPorCnpj(bankBranch.getCnpj());
             if(Objects.isNull(agenciaHttp)) {
-                Log.error("Register - Agência não encontrada pelo cnpj: " + bankBranch.getCnpj());
+                Log.warn("Register - Agência não encontrada pelo cnpj: " + bankBranch.getCnpj());
                 meterRegistry.counter("agencia_adiciona_nao_encontrada_counter").increment();
                 throw new BankBranchNotFoundException();
             }
 
             if(agenciaHttp.getRegistrationStatus().equals(RegistrationStatus.ATIVO)) {
                 bankBranchRepository.persist(bankBranch);
-                Log.error("Register - Agência com cnpj " + bankBranch.getCnpj() + " ativo e cadastrado com sucesso");
+                Log.info("Register - Agência com cnpj " + bankBranch.getCnpj() + " ativo e cadastrado com sucesso");
                 meterRegistry.counter("agencia_adiciona_counter").increment();
             } else {
-                Log.error("Register - Agência com cnpj " + bankBranch.getCnpj() + " está inativo");
+                Log.warn("Register - Agência com cnpj " + bankBranch.getCnpj() + " está inativo");
                 meterRegistry.counter("agencia_adiciona_inativa_counter").increment();
                 throw new InactiveBankBranchException();
             }
@@ -79,7 +79,7 @@ public class BankBranchService {
             Log.info("Agência excluída com sucesso: " + longId);
             meterRegistry.counter("agencia_excluir_por_id_counter").increment();
         } else {
-            Log.info("Agência não encontrada: " + longId);
+            Log.warn("Agência não encontrada: " + longId);
             meterRegistry.counter("agencia_excluir_por_id_nao_encontrada_counter").increment();
         }
     }
@@ -97,7 +97,7 @@ public class BankBranchService {
                         .and("id", bankBranch.getId()));
 
         if(affectedRows > 0) {
-            Log.info("Agência atua lizada com sucesso: " + bankBranch.getId());
+            Log.info("Agência atualizada com sucesso: " + bankBranch.getId());
             meterRegistry.counter("agencia_atualizar_por_id_counter").increment();
         } else {
             meterRegistry.counter("agencia_atualizar_por_id_nao_encontrada_counter").increment();
@@ -141,7 +141,7 @@ public class BankBranchService {
     private BankBranch getAgenciaById(Long longId) {
         var agencia = this.bankBranchRepository.findById(longId);
         if (Objects.isNull(agencia)) {
-            Log.error("Agência não encontrada pelo id: " + longId);
+            Log.warn("Agência não encontrada pelo id: " + longId);
             meterRegistry.counter("agencia_obter_por_id_nao_encontrada_counter").increment();
             throw new BankBranchNotFoundException();
         }
